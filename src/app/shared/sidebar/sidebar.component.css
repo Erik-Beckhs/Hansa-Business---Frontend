@@ -1,0 +1,19 @@
+mat-sidenav {
+    margin: 16px;
+    width: 350px;
+    border-right: none;
+    background: inherit;
+    /*color: white;*/
+    /*border-radius: 10px;*/
+    padding: 16px 16px 16px 40px;
+    text-align: center
+}
+
+mat-sidenav button:focus{
+    background-color: lightgray;
+    border-left:#067906 solid 6px;
+}
+.left-sidebar a{
+    text-decoration: none;
+    font-size:16px;
+}

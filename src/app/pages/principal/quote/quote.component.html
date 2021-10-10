@@ -1,0 +1,64 @@
+     <div class="content mat-elevation-z8">
+
+        <mat-card-title class="d-flex justify-content-between p-3">
+          <span class="d-flex"><mat-icon class="h1 border" style="min-width:40px;">shop</mat-icon><mat-label class="h5 pt-3">Cotizaciones en las que participo</mat-label></span>
+
+          <mat-icon routerLink="/principal" class="h1 cursor">fullscreen_exit</mat-icon>
+        </mat-card-title>
+    <mat-divider></mat-divider>
+    <table mat-table [dataSource]="dataSource" matSort>
+  
+      <!-- Position Column -->
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> # </th>
+        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre Cotización </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+  
+      <!-- Weight Column -->
+      <ng-container matColumnDef="state">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Estado </th>
+        <td mat-cell *matCellDef="let element"> {{element.state}} </td>
+      </ng-container>
+  
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="symbol">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Solicitante </th>
+        <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="moneda">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Moneda </th>
+        <td mat-cell *matCellDef="let element"> {{element.moneda}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="tipocot">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Tipo Cotización </th>
+        <td mat-cell *matCellDef="let element"> {{element.tipocot}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="fechaini">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha inicio </th>
+        <td mat-cell *matCellDef="let element"> {{element.fechaini}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="fechafin">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha fin </th>
+        <td mat-cell *matCellDef="let element"> {{element.fechafin}} </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                   showFirstLastButtons 
+                   aria-label="Select page of periodic elements">
+    </mat-paginator>
+
+  </div>

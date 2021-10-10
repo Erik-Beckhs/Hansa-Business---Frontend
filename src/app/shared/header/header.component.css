@@ -1,0 +1,43 @@
+mat-toolbar {
+    background: #004a9f;
+    color: white;
+    padding-left:50px;
+    padding-right:50px;
+}
+
+mat-toolbar a{
+    text-decoration: none;
+    color:#fff;
+}
+
+mat-toolbar mat-form-field{
+    background-color: inherit;
+    font-size:12px;
+    border:none;
+}
+
+mat-toolbar select{
+    background-color: inherit;
+    max-width: 200px;
+    border:none;
+    color:#fff;
+}
+
+.navbar-header{
+    width:170px;
+}
+
+@media(min-width:1024px) {
+    .page-wrapper {
+        margin-left: 0px !important;
+    }
+}
+
+.page-wrapper {
+    margin-left: 0px !important;
+}
+
+.navbar-header a{
+    text-decoration: none;
+    font-size: 22px;
+}

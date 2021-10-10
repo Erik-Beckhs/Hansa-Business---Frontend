@@ -1,0 +1,83 @@
+<div class="container profile">
+    <p class="my-2"><span class="h5">Información general</span></p>
+    <div class="row info">
+      <p class="text-muted"> Información básica que utilizas para ser parte de nuestros proveedores</p>
+      <p><span class="h6"> Nota.</span><span class="text-muted"> Solo tú puedes ver esta información </span></p>
+    </div>
+  <div class="row mt-3">
+    <div class="col-md-6">
+      <div class="row h6 px-3">
+        Información básica
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-md-4 p-2 text-center">
+          <img src="https://www.chillanonline.cl/V5/wp-content/uploads/2021/07/Dell-Technologies.jpg" alt="" class=" avatar rounded-circle mat-elevation-z8">
+          <p class="text-muted mt-2">{{contact.first_name}} {{contact.last_name}}</p>
+          <p class="h4" *ngIf="!supplier[0].name">Proveedor no asignado</p>
+          <p class="h4" *ngIf="supplier[0].name">{{supplier[0].name}}</p>
+        </div>
+        <div class="col-md-8 p-2 ps-5">
+          <div class="row my-3">
+            <span class="h6">Nombre y Apellidos</span>
+            <span class="text-muted">{{contact.first_name}} {{contact.last_name}}</span>
+          </div>
+          <div class="row my-3">
+            <span class="h6">Empresa</span>
+            <span class="text-muted" *ngIf="!supplier[0].name">No asignado</span>
+            <span class="text-muted" *ngIf="supplier[0].name">{{supplier[0].name}}</span>
+          </div>
+          <div class="row my-3">
+            <span class="h6">País</span>
+            <span class="text-muted" *ngIf="!supplier[0].country">No asignado</span>
+            <span class="text-muted" *ngIf="supplier[0].country">{{supplier[0].country}}</span>
+          </div>
+          <div class="row my-3">
+            <span class="h6">Ciudad / provincia</span>
+            <span class="text-muted" *ngIf="!contact.city">No asignado</span>
+            <span class="text-muted" *ngIf="contact.city">{{contact.city}}</span>
+          </div>
+          <div class="row my-3">
+            <span class="h6">Puesto</span>
+            <span class="text-muted" *ngIf="!contact.position">No asignado</span>
+            <span class="text-muted" *ngIf="contact.position">{{showPosition(contact.position)}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="row h6 px-3">
+        Información de contacto
+      </div>
+      <hr>
+      <div class="row ps-5 mt-2">
+        <div class="row my-3">
+          <span class="h6">Correo electrónico</span>
+          <span class="text-muted">{{contact.email}}</span>
+        </div>
+        <div class="row my-3">
+          <span class="h6">Teléfono</span>
+          <span class="text-muted">{{contact.phone}}</span>
+        </div>
+      </div>
+      <div class="row h6 px-3 mt-2">
+        Categoría de Proveedor
+      </div>
+      <hr>
+      <div class="row ps-5">
+        <div class="row text-start my-2">
+          <span class="h6">Tipo</span>
+          <span class="text-muted" *ngIf="!supplier[0].type">No asignado</span>
+          <span class="text-muted" *ngIf="supplier[0].type">{{supplier[0].type}}</span>
+        </div>
+        <div class="row text-start my-2">
+          <span class="h6">Rubro</span>
+          <span class="text-muted">{{showRubro(supplier[0].rubro)}}</span>
+        </div>
+      </div>
+      <div class="d-flex justify-content-end mt-5">
+        <button mat-raised-button color="accent"(click)="openDialogEdit()">Editar</button>
+      </div>
+    </div>
+  </div>
+</div>

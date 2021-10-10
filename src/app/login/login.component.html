@@ -1,0 +1,24 @@
+<div class="page-container">
+  
+<mat-card class="mat-elevation-z8">
+  <mat-grid-list cols="12" rowHeight="570px">
+    <mat-grid-tile colspan="4">
+      <img id="img-login" mat-card-image src="../../assets/images/login.png" class="img-fluid rounded-start" alt="...">
+    </mat-grid-tile>
+    <mat-grid-tile colspan="8">
+      <mat-card-content class="p-5 container">
+        <div class="row">
+          <div class="d-flex justify-content-end">
+            <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+              <mat-button-toggle routerLink="">Unirse</mat-button-toggle>
+              <mat-button-toggle routerLink="register">Registrarse</mat-button-toggle>
+            </mat-button-toggle-group>
+          </div>
+        </div>
+        <router-outlet></router-outlet>
+      </mat-card-content>
+    </mat-grid-tile>
+  </mat-grid-list>
+</mat-card>
+
+</div>

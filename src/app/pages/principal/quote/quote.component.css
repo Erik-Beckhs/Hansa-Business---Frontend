@@ -1,0 +1,36 @@
+table {
+    width: 100%;
+    /*height: calc(50vh - 100px);*/
+    height:50%;
+   /* border-radius:10px;*/
+  }
+
+  th{
+      background-color: #ff4081;
+      color:#fff;
+      font-size:14px;
+  }
+
+  .mat-sort-header-arrow {
+    color: #fff !important;
+  }
+
+  mat-divider {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+.content {
+  height: calc(100vh - 98px);
+  border-radius: 10px;
+  margin: 16px;
+  margin-left: 32px;
+
+  /*display: flex;*/
+  /*justify-content: center;*/
+  /*align-items: center;*/
+
+  font-size: 2rem;
+  /*color: lightgray;*/
+  padding:20px;
+}
