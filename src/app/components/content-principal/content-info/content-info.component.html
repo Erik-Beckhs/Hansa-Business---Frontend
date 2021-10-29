@@ -1,0 +1,71 @@
+<div>
+    <div class="row animated fadeIn">
+        <div class="col-md-7 px-5 py-4">
+            <div class="text-dark">
+                <span class="h5 info " routerLinkActive="active" [routerLink]="['/cot-principal/content-info/', idQuot]">Información |</span>
+                <span class="h5 info " routerLinkActive="active" [routerLink]="['/cot-principal/content-info/', idQuot, 'respuestas']"> Respuestas</span>
+            </div>
+            <div class="mt-3 px-4">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+        <div class="col-md-5 aside-info py-4 px-5">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="">Fecha de Presentación</label>
+                        <input type="text" class="form-control mt-1" [ngModel]="date | date:'short'" readOnly >
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="">Tipo</label>
+                        <input type="text" class="form-control mt-1" readOnly [ngModel]="quotation.type">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="">Moneda</label>
+                        <input type="text" class="form-control mt-1" readOnly value="" [ngModel]="quotation.money | moneySupplier">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group mx-3">
+                    <label for="">Objeto de la Cotización</label>
+                    <textarea name=""  readOnly id="" cols="35" rows="2" class="mt-1 form-control">{{quotation.description}}</textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="">Tipo de adjudicación</label>
+                        <input type="text" class="form-control mt-1" [ngModel]="quotation.adjudicationType" readOnly>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="">Condición de Pago</label>
+                        <input type="text" class="form-control mt-1" readOnly [ngModel]="quotation.payCondition | payconditionSupplier" >
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="">Fecha de Inicio</label>
+                        <input type="text" class="form-control mt-1" [ngModel]="quotation.start | date: 'medium'" readOnly>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="">Fecha de Conclusión</label>
+                        <input type="text" class="form-control mt-1" [ngModel]="quotation.end | date: 'medium'" readOnly >
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

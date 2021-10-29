@@ -1,0 +1,32 @@
+.info{
+    color:slategrey;
+    cursor:pointer;
+}
+
+.active{
+    color:#0dcaf0;
+}
+.aside-info{
+    min-height:560px;
+    background-color:#0dcaf0;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    color:#fff;
+    font-size:17px;
+    line-height: 20px;
+}
+
+.aside-info input{
+    background-color: #a6dffa;
+    border:none;
+}
+
+.aside-info textarea{
+    background-color: #a6dffa;
+    border:none;
+}
+
+
+.aside-info textarea:focus{
+    background-color: #79c5e7;
+}

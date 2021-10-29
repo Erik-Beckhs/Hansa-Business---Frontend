@@ -1,0 +1,82 @@
+<div class="row profile animated fadeIn">
+  <div class="col-md-7">
+    <div class="card card-body">
+        <h3 class="box-title m-b-0">Perfil de Usuario</h3>
+        <p class="text-muted m-b-0 font-13"> Información de usuario asociado a proveedor </p>
+        <hr>
+        <div class="row">
+            <div class="col-sm-12 col-xs-12">
+                <form ngNativeValidate #f="ngForm" (ngSubmit)="updateContact(f.value)">
+                  <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                          <label for="first_name">Nombre</label>
+                          <input type="text" [ngModel]="contact.first_name" class="form-control" id="first_name" name="first_name" placeholder="Ingrese su nombre">
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <label for="last_name">Apellidos</label>
+                        <input type="text" [ngModel]="contact.last_name" name="last_name" class="form-control" id="last_name" placeholder="Ingrese sus apellidos">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="email">Correo Electrónico</label>
+                    <input type="email" name="email" [ngModel]="contact.email" class="form-control" id="email" placeholder="Ingrese su correo">
+                  </div>
+                    <div class="form-group">
+                      <label for="phone">Teléfono</label>
+                      <input type="text" [ngModel]="contact.phone" class="form-control" name="phone" id="phone" placeholder="Ingrese su telefono">
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <label for="country">País</label>
+                        <!--<input type="email" class="form-control" id="country" placeholder="Enter email">-->
+                        <select required name="country" [(ngModel)]="contact.country" id="" class="form-control">
+                          <option *ngFor="let pais of paisList" [value]="pais">{{pais}}</option>
+                        </select> 
+
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <label for="city">Ciudad</label>
+                        <input type="text" [ngModel]="contact.city" name="city" class="form-control" id="city" placeholder="Enter email">
+                      </div>
+                    </div>
+                  </div>
+                  
+                  
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Cargo</label>
+                        <!--<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">-->
+                        <select name="position" id="" [(ngModel)]="contact.position" class="form-control">
+                          <option *ngFor="let position of positionList" [value]="position.code">{{position.name}}</option>
+                        </select>
+                    </div>
+                    <div class="row">
+                        <!--<button type="submit" class="btn btn-block btn-primary waves-effect waves-light m-r-10"><i class="fa fa-save"></i> Actualizar</button>-->
+                        <button mat-raised-button class="btn px-5 form-control scale-hover"><i class="fa fa-save"></i> Actualizar</button>
+                      </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-5">
+  <div class="card card-body">
+      <h3 class="box-title m-b-0">Imagen</h3>
+      <p class="text-muted m-b-0 font-13"> Descripción </p>
+      <hr>
+      <div class="row d-flex justify-content-center">
+        <img *ngIf="!imageTemp" [src]="contact.img" alt="" class="w200">
+        <img *ngIf="imageTemp" [src]="imageTemp" alt="" class="w200">
+        <input type="file" class="my-2" (change)="onFileChange($event)">
+        <!--<button type="button" [disabled]="!imageLoad" class="btn btn-primary btn-block waves-effect waves-light m-r-10"><i class="fa fa-save"></i> Actualizar Imagen</button>-->
+        <button (click)="updateImage()" mat-raised-button [disabled]="!imageLoad"  class="btn px-5 form-control scale-hover"><i class="fa fa-save"></i> Actualizar Imagen</button>
+      </div>  
+    </div>
+  </div>
+</div>

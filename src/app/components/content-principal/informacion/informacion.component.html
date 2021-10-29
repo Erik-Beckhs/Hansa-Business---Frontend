@@ -1,0 +1,65 @@
+<div class="informacion">
+    <form #f="ngForm" (ngSubmit)="send(f.value)">
+    <div class="row">
+        <span>
+            <span class="h5">Cotización Online - {{quotation.name}}</span>
+        </span>
+    </div>
+    <div class="mx-2 mt-3">
+        <span class="h6">Información <i class="fa fa-info-circle"></i> </span>
+        <hr>
+        <p class="my-3 text-justify txt-13" >Hansa lo invitó a participar de la cotización: <span style="font-weight:600;">{{quotation.name}}</span>, si pretende participar, revise el plazo de la cotización y acepte los términos y condiciones del evento si corresponde. Haga clic en "Respuesta" para proporcionar su respuesta, la cual puede incluir adjuntos, formularios y artículos.</p>
+        <span class="h6">Tiene intención de participar de esta cotización <i class="fa fa-check-circle"></i></span>
+        <hr>
+        <div class="row m-3">
+            <div>
+                <input type="checkbox" id="md_checkbox_22" [(ngModel)]="intencion" name="intencion" class="filled-in chk-col-cyan" />
+                <label for="md_checkbox_22"><span class="txt-13">Tiene intención de participar de esta cotización?</span><br>
+                <span class="txt-13 text-muted">Se notificará su respuesta de cotización</span></label>
+            </div>
+
+                <!--<mat-checkbox name="remember" class="example-margin" style="line-height: 0px;">
+                <span class="txt-13">Tiene intención de participar de esta cotización?</span><br>
+                <span class="txt-13 text-muted">Se notificará su respuesta de cotización</span></mat-checkbox>-->
+        </div>
+        <span class="h6">Aceptar términos y condiciones <i class="fa fa-check-circle"></i></span>
+        <hr>
+        <div class="mx-3">
+            <div class="row d-flex align-items-center"*ngFor="let term of termsConditions">
+                <div class="col-4">
+                   <div class="row">
+                    <!--<a [href]="term.document">-->
+                       <div class="col-5">
+                            <img [src]="term.doc.name | imgDoc" width="70">
+                       </div>
+                       <div class="col-7 pl-3">
+                           <div class="row txt-13">
+                               {{term.name}}
+                           </div>
+                           <div class="row txt-13">
+                                {{term.doc.size}} Kb
+                           </div>
+                       </div>
+                    <!--</a>-->
+                   </div>
+                </div>
+                <div class="col-4 d-flex justify-content-center">
+                    <div class="switch">
+                        <label>NO
+                            <input type="checkbox" checked><span class="lever switch-col-cyan"></span>SI</label>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <label class="txt-13 text-muted">Comentario de rechazo</label>
+                        <textarea class="form-control" rows="1"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-end">
+            <button type="submit" [disabled]="!intencion" class="btn btn-cyan waves-effect waves-light m-r-10">Enviar al propietario de la cotización</button>
+        </div> 
+    </div>
+</form>
+</div>

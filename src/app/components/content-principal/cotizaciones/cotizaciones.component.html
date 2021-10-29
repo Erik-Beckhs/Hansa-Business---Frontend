@@ -1,0 +1,78 @@
+<div class="p-3">
+  <div class="cot-list" *ngIf="arrayList.length>0">
+  
+    <mat-card-title class="d-flex align-items-center text-dark">
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+          <mat-icon>shop</mat-icon>
+        </button>
+        <span style="font-size: 17px;">Cotizaciones en las que participo</span>
+  </mat-card-title>
+  
+  <mat-divider></mat-divider>
+  
+  <table mat-table [dataSource]="dataSource" matSort>
+  
+    <!-- Position Column -->
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> # </th>
+      <td mat-cell *matCellDef="let element"> {{element.pos}} </td>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre Cotización </th>
+      <td mat-cell *matCellDef="let element"><a [routerLink]="['content-info', element.id]">{{element.name}}</a> </td>
+    </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="state">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Estado </th>
+      <td mat-cell class="font-weight-500" [ngClass]="styleState(element.state)" *matCellDef="let element"> {{getState(element.state)}} </td>
+    </ng-container>
+  
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="applicant">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Solicitante </th>
+      <td mat-cell *matCellDef="let element"> {{element.applicant}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="money">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Moneda </th>
+      <td mat-cell *matCellDef="let element"> {{element.money | moneySupplier}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="tipocot">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Tipo Cotización </th>
+      <td mat-cell *matCellDef="let element"> {{getTipoSolicitud(element.type)}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="fechaini">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha inicio </th>
+      <td mat-cell *matCellDef="let element"> {{element.start | date: 'medium'}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="fechafin">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha fin </th>
+      <td mat-cell *matCellDef="let element"> {{element.end | date: 'medium'}} </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  
+  <mat-paginator [pageSizeOptions]="[5, 10]"
+                 showFirstLastButtons 
+                 aria-label="Select page of periodic elements">
+  </mat-paginator>
+  
+  </div>
+  
+
+  <div *ngIf="arrayList.length==0">
+    <div  class="alert alert-danger" role="alert">
+      Aún no ha sido invitado a participar en nuestras cotizaciones
+    </div>
+    <button class="text-left" routerLink="/pages/profile" mat-raised-button color="primary">Volver a Perfil</button>
+  </div>
+ 
+</div>

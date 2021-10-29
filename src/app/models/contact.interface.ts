@@ -7,5 +7,6 @@ export interface ContactInterface{
     country?:string;
     city?:string;
     position?:string;
+    img?:string;
     idUser?:any;
 }

@@ -17,6 +17,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { CommonModule } from '@angular/common';
 
 const MaterialComponents = [
     MatButtonModule,
@@ -36,7 +37,8 @@ const MaterialComponents = [
     MatSortModule,
     MatSidenavModule,
     MatDividerModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    CommonModule
 ];
 
 @NgModule({

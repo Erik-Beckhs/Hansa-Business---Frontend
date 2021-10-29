@@ -9,3 +9,32 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .border-bottom-3{
     border-bottom:3px solid #000;
 }
+.txt-13{
+    font-size: 13px;
+}
+
+.btn-cyan{
+    background-color: aqua;
+    color:#fff;
+}
+
+.w200{
+    width:200px;
+}
+
+hr{
+    margin-top:15px;
+    margin-bottom: 20px;
+    border: none;
+    height: 3px; /* Set the hr color */ 
+    color: #CCCCCC; /* old IE */ 
+    background-color: #CCCCCC; /* Modern Browsers */
+}
+
+.d-flex{
+    display: flex;
+}
+
+.justify-content-end{
+    justify-content: end;
+}

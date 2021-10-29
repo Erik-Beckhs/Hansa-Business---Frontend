@@ -1,0 +1,19 @@
+.responder hr{
+    margin-top:5px;
+    margin-bottom: 20px;
+    border: none;
+    height: 3px; /* Set the hr color */ 
+    color: #CCCCCC; /* old IE */ 
+    background-color: #CCCCCC; /* Modern Browsers */
+}
+
+.fs13{
+    font-size: 13px;
+}
+
+.btn-cyan{
+    background-color: #0dcaf0;
+    color:#fff;
+    font-size:13px;
+    font-weight:400;
+  }
