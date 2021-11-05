@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class ListService {
   pais:any[]=[
-    "Bangladesh",
+      "Bangladesh",
       "Belgium",
       "Burkina Faso",
       "Bulgaria",
@@ -256,27 +256,27 @@ export class ListService {
       "Ukraine",
       "Qatar",
       "Mozambique"
-  ]
+  ];
 
   rubros:any[]=[
-    {codigo:'A0', name:	'AGRIC-PECUA-Y-AGROIN'},
-    {codigo:'B0', name:	'ARTESANIA, MYPES'},
-    {codigo:'C0', name:	'COMERCIO E IMPORTAC'},
-    {codigo:'C001', name:	'TAT'},
-    {codigo:'C002', name:	'AASS'},
-    {codigo:'C003', name:	'Farmacias'},
-    {codigo:'C004', name:	'Tradicional'},
-    {codigo:'C005', name:	'Otro'},
-    {codigo:'C006', name:	'Instituciones'},
-    {codigo:'C007', name:	'Canales Alternativos'},
-    {codigo:'D0', name:	'CONST-URBAN Y EQUIP'},
-    {codigo:'E0', name:	'EDUC-CULTU. Y CIENC'},
-    {codigo:'F0', name:	'EXPORT. Y COM. EXT.'},
-    {codigo:'G0', name:	'FINANZ., VAL. Y SEG.'},
-    {codigo:'H0', name:	'HIDROC-MINE. Y ENERG'},
-    {codigo:'I0', name:	'INDUSTRIA Y MANUFAC.'},
-    {codigo:'J0', name:	'INST-ENTID. Y ORGAN'},
-    {codigo:'K0', name:	'PUBLIC-COMUNIC-IMPR'},
+    {id:'A0', name:	'AGRIC-PECUA-Y-AGROIN'},
+    {id:'B0', name:	'ARTESANIA, MYPES'},
+    {id:'C0', name:	'COMERCIO E IMPORTAC'},
+    {id:'C001', name:	'TAT'},
+    {id:'C002', name:	'AASS'},
+    {id:'C003', name:	'Farmacias'},
+    {id:'C004', name:	'Tradicional'},
+    {id:'C005', name:	'Otro'},
+    {id:'C006', name:	'Instituciones'},
+    {id:'C007', name:	'Canales Alternativos'},
+    {id:'D0', name:	'CONST-URBAN Y EQUIP'},
+    {id:'E0', name:	'EDUC-CULTU. Y CIENC'},
+    {id:'F0', name:	'EXPORT. Y COM. EXT.'},
+    {id:'G0', name:	'FINANZ., VAL. Y SEG.'},
+    {id:'H0', name:	'HIDROC-MINE. Y ENERG'},
+    {id:'I0', name:	'INDUSTRIA Y MANUFAC.'},
+    {id:'J0', name:	'INST-ENTID. Y ORGAN'},
+    {id:'K0', name:	'PUBLIC-COMUNIC-IMPR'},
   ];
 
   //lista de cargos
@@ -286,6 +286,12 @@ export class ListService {
     {code:'99', name:'Otro'},
   ];
 
+  //lista de tipo o alcance
+  types:any[]=[
+    {id:'1', name:'Individual'},
+    {id:'2', name:'Empresa'},
+  ];
+
   constructor(private http:HttpClient) { }
   headers:HttpHeaders= new HttpHeaders({
     'Content-type': 'application/json'
@@ -293,16 +299,20 @@ export class ListService {
 
   //devuelve el listado de paises
   getPaisList(){
-    return this.pais;
+    return this.pais.sort();
   }
 
   //devuelve el listado de rubros
   getRubroList(){
-    return this.rubros;
+    return this.rubros.sort();
   }
 
   //devuelve el listado de cargos
   getPositionsList(){
-    return this.positions
+    return this.positions.sort();
+  }
+
+  getTypeList(){
+    return this.types
   }
 }

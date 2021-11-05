@@ -29,14 +29,19 @@ export class HeaderComponent implements OnInit {
     private authService:AuthService,
     private _contact:ContactsService,
     private router:Router, 
-    //private dialog:MatDialog
     ) {
-
+     
    }
 
   ngOnInit(): void {
+    this.loadContact()
+    // this._contact.notification.subscribe(
+    //   res=>this.loadContact()
+    // )
+  }
+
+  loadContact(){
     this.contact=this._contact.contact
-    //console.log(this.contact)
   }
 
   logOut() {

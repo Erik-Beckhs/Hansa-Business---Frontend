@@ -7,7 +7,7 @@ import { ContentPrincipalComponent } from "./content-principal.component";
 import { PrincipalRoutes } from "./content-principal.routes";
 import { CotizacionesComponent } from "./cotizaciones/cotizaciones.component";
 import { InformacionComponent } from "./informacion/informacion.component";
-import { ResponderComponent } from './responder/responder.component';
+import { QuotationComponent } from './quotation/quotation.component';
 
 @NgModule({
     declarations:[
@@ -15,7 +15,7 @@ import { ResponderComponent } from './responder/responder.component';
         CotizacionesComponent,
         ContentInfoComponent,
         InformacionComponent,
-        ResponderComponent
+        QuotationComponent
     ],
     imports:[
         SharedModule,

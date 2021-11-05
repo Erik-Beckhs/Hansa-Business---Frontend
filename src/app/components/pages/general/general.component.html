@@ -8,7 +8,14 @@
             </div>
         </div>
         <div class="col-4 text-right">
-            <button class="btn btn-primary">Editar</button>
+          <div class="btn-group" *ngIf="supplier.name">
+            <button type="button" mat-raised-button class="btn px-5 form-control scale-hover dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-edit"></i> Editar</button>
+            <div class="dropdown-menu" x-placement="bottom-start" style="width:inherit; position: absolute; transform: translate3d(0px, 36px, 0px); top: 0px; left: 0px; will-change: transform;">
+              <a class="dropdown-item" routerLink="/pages/profile">Editar Usuario / Contacto</a>
+              <a class="dropdown-item" routerLink="/pages/business/supplier">Editar Proveedor</a>
+            </div>
+          </div>
+          <button *ngIf="!supplier.name" routerLink="/pages/business/supplier" type="button" mat-raised-button class="btn px-5 form-control scale-hover"><i class="fa fa-edit"></i> Registrar Proveedor</button>
         </div>
     </div>
   <div class="row mt-3">
@@ -40,14 +47,13 @@
             <div class="text-muted">{{supplier.country | fillEmpty}}</div>
             <!--<span class="text-muted" *ngIf="contact.suppliers.country">{{contact.country}}</span>-->
           </div>
-          <div class="form-group my-3">
+          <!--<div class="form-group my-3">
             <div class="h6">Ciudad / provincia</div>
             <div class="text-muted">{{contact.city | fillEmpty}}</div>
-            <!--<span class="text-muted" *ngIf="contact.suppliers.city">{{contact.city}}</span>-->
-          </div>
+          </div>-->
           <div class="form-group my-3">
-            <div class="h6">Puesto</div>
-            <div class="text-muted">{{supplier.position | fillEmpty}}</div>
+            <div class="h6">Cargo o profesión</div>
+            <div class="text-muted">{{contact.position | fillEmpty}}</div>
             <!--<span class="text-muted" *ngIf="contact.suppliers.position">{{showPosition(contact.position)}}</span>-->
           </div>
         </div>
@@ -75,7 +81,7 @@
       <div class="px-5">
         <div class="form-group text-start my-2">
           <div class="h6">Tipo</div>
-          <div class="text-muted">{{supplier.type | fillEmpty}}</div>
+          <div class="text-muted">{{supplier.type | typeSupplier}}</div>
           <!--<span class="text-muted" *ngIf="contact.suppliers.type">{{contact.suppliers.type}}</span>-->
         </div>
         <div class="form-group text-start my-2">

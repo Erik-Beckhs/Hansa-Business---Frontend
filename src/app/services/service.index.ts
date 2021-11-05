@@ -8,3 +8,7 @@ export { ListService } from "./others/list.service";
 export { SettingsService } from "./shared/settings.service";
 export { SidebarService } from "./shared/sidebar.service";
 export { SurveyService } from "./others/survey.service";
+export { GenerateIDService } from "./others/generate-id.service";
+export { ProductsService } from "./others/products.service";
+export { DocumentsService } from "./others/documents.service";
+

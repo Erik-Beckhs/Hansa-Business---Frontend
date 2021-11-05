@@ -26,4 +26,9 @@ idSurvey!:string
     let url=`${URL_SERVICE}/api/querys?filter={"where": {"and": [{"id": "${idQuery}"}]}, "include":"options"}`
     return this.http.get(url)
   }
+
+  getIdProdListByIdAnswer(idAnswer:any){
+    let url=`${URL_SERVICE}/api/answers/${idAnswer}/answerProdServs`
+    return this.http.get(url)
+  }
 }

@@ -17,7 +17,6 @@ import { LoginService } from './services/service.index';
 import { AppComponent } from './app.component';
 import { RetrieveComponent } from './components/login/retrieve/retrieve.component';
 import { LogoutUserComponent } from './components/dialogs/logout-user/logout-user.component';
-import { EditProveedorComponent } from './components/dialogs/edit-proveedor/edit-proveedor.component';
 import { PasswordComponent } from './components/pages/password/password.component';
 import { RespuestasComponent } from './components/content-principal/respuestas/respuestas.component';
 import { LoginComponent } from './components/login/login.component';
@@ -27,10 +26,8 @@ import { Page404Component } from './components/shared/page404/page404.component'
 import { SharedComponent } from './components/shared/shared.component';
 
 //Services
-//import { SettingsService } from './services/shared/settings.service';
 import { ServiceModule } from './services/service.module';
 import { ReactiveFormsModule } from '@angular/forms';
-//import { SupplierPipe } from './pipes/supplier.pipe';
 
 @NgModule({
   declarations: [
@@ -40,7 +37,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     SignupComponent,
     RetrieveComponent,
     LogoutUserComponent,
-    EditProveedorComponent,
     PasswordComponent,
     RespuestasComponent,
     Page404Component,

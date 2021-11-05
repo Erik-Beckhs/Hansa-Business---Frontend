@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 declare function import_plugins():any
 
@@ -9,8 +10,9 @@ declare function import_plugins():any
 })
 export class ContentPrincipalComponent implements OnInit {
 
-  constructor() {
+  constructor(private title:Title) {
     import_plugins()
+    this.title.setTitle('quotations')
    }
 
   ngOnInit(): void {

@@ -1,0 +1,100 @@
+<div class="responder">
+    <form ngNativeValidate #f="ngForm" class="mx-2 mt-3">
+        <div class="mx-3 my-2 formulario">
+        <span class="h5 font-weight-bold"><i class="fa fa-comments-o"></i> Formulario de Preguntas</span>
+        <hr>
+            <div class="py-1 px-4">
+                <div class="row font-weight-bold px-3">
+                    {{surveyGral.name}}
+                </div>
+                <span class="fs13">{{surveyGral.description}}</span>
+                <hr class="mb-1">
+                <div class="section mx-3" *ngFor="let section of surveyGral.sections">
+                    <div class="font-weight-normal">{{section.name}}</div>
+                    <span class="font-weight-normal fs13" *ngIf="section.description">{{section.description}}</span>
+                    <hr>
+                    <div class="querys" style="height:100px;">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div class="mx-3 my-2 productos">
+                <div class="row">
+                    <div class="col-6">
+                        <span class="h6"><i class="fa fa-shopping-cart"></i> Productos / Servicios</span>
+                    </div>
+                    <div class="col-6 d-flex justify-content-end">
+                        <span class="fs13">Vigencia de la oferta en días </span><input style="height:25px; border-radius:5px; width:50px;" class="ml-2" type="number" min="0">
+                    </div>
+                </div>
+                <hr>
+                <div class="py-1 px-4">
+                    <div class="">
+                        <table mat-table [dataSource]="dataSource">
+                      
+                          <!-- Position Column -->
+                          <ng-container matColumnDef="name">
+                            <th mat-header-cell *matHeaderCellDef class="text-center"> Nombre </th>
+                            <td mat-cell *matCellDef="let element"> {{element.name | titlecase}} </td>
+                          </ng-container>
+                      
+                          <!-- Name Column -->
+                          <ng-container matColumnDef="unit">
+                            <th mat-header-cell *matHeaderCellDef class="text-center"> Unidad </th>
+                            <td mat-cell *matCellDef="let element" class="text-center"> {{element.unit}} </td>
+                          </ng-container>
+                      
+                          <!-- Weight Column -->
+                          <ng-container matColumnDef="amount">
+                            <th mat-header-cell *matHeaderCellDef class="text-center"> Cantidad </th>
+                            <td mat-cell *matCellDef="let element" class="text-center"> {{element.amount}} </td>
+                          </ng-container>
+                      
+                          <!-- Symbol Column -->
+                          <ng-container matColumnDef="myprice">
+                            <th mat-header-cell *matHeaderCellDef class="text-center"> Mi Precio </th>
+                            <td mat-cell *matCellDef="let element" class="text-center"> <input type="number" class="form-control w100"> </td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="subtotal">
+                            <th mat-header-cell *matHeaderCellDef class="text-center"> Subtotal </th>
+                            <td mat-cell *matCellDef="let element"> </td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="edit" >
+                            <th mat-header-cell *matHeaderCellDef class="text-center"> Responder </th>
+                            <td mat-cell *matCellDef="let element" class="text-center"> <i (click)="verProducto(element)" class="fa fa-edit pointer" title="Responder"></i></td>
+                          </ng-container>
+                      
+                          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        </table>
+                      
+                        <mat-paginator [pageSizeOptions]="[5]"
+                                       showFirstLastButtons 
+                                       aria-label="Select page of periodic elements">
+                        </mat-paginator>
+                    </div>
+            
+                </div>
+                <div class="text-right my-2">
+                    <button mat-raised-button><i class="fa fa-save"></i> Guardar cambios</button>
+                </div>
+            </div>
+            <div class="mx-3 my-2 documentos">
+                <div >
+                    <span class="h6"><i class="fa fa-file-pdf-o"></i> Documentos solicitados</span>
+                    <hr>
+                </div>
+                <div class="row">
+                    <div class="py-1 px-4">
+                        Lista de documentos
+                    </div>
+                </div>  
+            </div>
+            <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-cyan waves-effect waves-light m-r-10">Enviar respuesta al comprador</button>
+            </div>
+</form>
+</div>  

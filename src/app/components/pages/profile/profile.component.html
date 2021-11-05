@@ -1,7 +1,8 @@
-<div class="row profile animated fadeIn">
+<div class="row profile animated fadeIn mx-3">
   <div class="col-md-7">
     <div class="card card-body">
-        <h3 class="box-title m-b-0">Perfil de Usuario</h3>
+
+        <div class="box-title m-b-0 h4">Perfil de Usuario</div>
         <p class="text-muted m-b-0 font-13"> Información de usuario asociado a proveedor </p>
         <hr>
         <div class="row">
@@ -43,22 +44,21 @@
                     <div class="col-md-6 col-sm-12">
                       <div class="form-group">
                         <label for="city">Ciudad</label>
-                        <input type="text" [ngModel]="contact.city" name="city" class="form-control" id="city" placeholder="Enter email">
+                        <input type="text" [ngModel]="contact.city" name="city" class="form-control" id="city" placeholder="Ingrese su ciudad">
                       </div>
                     </div>
                   </div>
                   
-                  
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Cargo</label>
-                        <!--<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">-->
-                        <select name="position" id="" [(ngModel)]="contact.position" class="form-control">
+                  <div class="form-group">
+                        <label for="exampleInputPassword1">Cargo o Profesión</label>
+                        <input type="text" [ngModel]="contact.position" name="position" class="form-control" placeholder="Cargo o Profesión">
+                        <!--<select name="position" id="" [(ngModel)]="contact.position" class="form-control">
                           <option *ngFor="let position of positionList" [value]="position.code">{{position.name}}</option>
-                        </select>
+                        </select>-->
                     </div>
                     <div class="row">
                         <!--<button type="submit" class="btn btn-block btn-primary waves-effect waves-light m-r-10"><i class="fa fa-save"></i> Actualizar</button>-->
-                        <button mat-raised-button class="btn px-5 form-control scale-hover"><i class="fa fa-save"></i> Actualizar</button>
+                        <button type="submit" mat-raised-button class="btn px-5 form-control scale-hover"><i class="fa fa-save"></i> Actualizar</button>
                       </div>
                 </form>
             </div>
@@ -67,8 +67,8 @@
 </div>
 <div class="col-md-5">
   <div class="card card-body">
-      <h3 class="box-title m-b-0">Imagen</h3>
-      <p class="text-muted m-b-0 font-13"> Descripción </p>
+      <div class="box-title m-b-0 h4">Imagen</div>
+      <p class="text-muted m-b-0 font-13"> {{contact.first_name}} {{contact.last_name}} </p>
       <hr>
       <div class="row d-flex justify-content-center">
         <img *ngIf="!imageTemp" [src]="contact.img" alt="" class="w200">

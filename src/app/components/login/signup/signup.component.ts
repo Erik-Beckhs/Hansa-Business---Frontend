@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+//import { MatDialog } from '@angular/material/dialog';
 import { NgForm } from '@angular/forms';
-import { AuthService } from 'src/app/services/service.index';
+import { AuthService, GenerateIDService } from 'src/app/services/service.index';
 import { ContactInterface, SupplierInterface, UserInterface } from '../../../models/interface.index';
 import { Router } from '@angular/router';
 import { ContactsService, ListService } from 'src/app/services/service.index';
@@ -25,16 +25,6 @@ export class SignupComponent implements OnInit {
   //email = new FormControl('', [Validators.required, Validators.email]);
   positionsList:any[]=[];
 
-  // public supplier:SupplierInterface = {
-  //   id:'',
-  //   name:'',
-  //   type:'',
-  //   businessArea:'',
-  //   country:'',
-  //   image:'',
-  //   idContact:''
-  // };
-
   public user:UserInterface={
     email:"",
     password:""
@@ -45,10 +35,11 @@ export class SignupComponent implements OnInit {
 
   constructor(
     private _list:ListService,
-    public dialog:MatDialog,
+    //public dialog:MatDialog,
     private authService:AuthService,
     private router:Router,
-    private contactsService:ContactsService
+    private _contact:ContactsService,
+    private _generateID:GenerateIDService
     ) {
       this.paisList=_list.getPaisList().sort() 
       //this.positionsList=contactsService.getPositions()
@@ -83,12 +74,12 @@ export class SignupComponent implements OnInit {
     )
 
     this.formContact.setValue({
-      first_name:'Erik',
-      last_name:'Maquera',
+      first_name:'test1',
+      last_name:'test',
       country:'Bolivia',
-      city:'Santa Cruz',
+      city:'La Paz',
       phone:'61216696',
-      email:'emaquera@hansa.com.bo',
+      email:'test1@hansa.com.bo',
       password:'123456',
       password2:'123456',
       conditions:true
@@ -184,7 +175,7 @@ registerContact(){
   //console.log(this.formContact!.value)
 
  this.contact = {
-   id:this.generateID(),
+   id:this._generateID.generateID(),
    first_name:this.formContact.value.first_name,
    last_name:this.formContact.value.last_name,
    email:this.formContact.value.email,
@@ -193,33 +184,25 @@ registerContact(){
    city:this.formContact.value.city
  }
 
-//  id?:string;
-//  first_name:string;
-//  last_name:string;
-//  email:string;
-//  phone?:string;
-//  country?:string;
-//  city?:string;
-//  position?:string;
-//  idUser?:any;
-
-this.user=({
-  email:this.formContact.value.email,
-  password:this.formContact.value.password
-})
+  this.user=({
+    email:this.formContact.value.email,
+    password:this.formContact.value.password
+  })
 
   //registrar usuario, registrar contacto
   this.authService.registerUser(this.user).subscribe(res=>{
     this.user=res
     this.contact.idUser=this.user.id
-    this.contactsService.registerContact(this.contact).subscribe(res=>{
-      console.log(res)
+    this._contact.registerContact(this.contact).subscribe(res=>{
+      //console.log(res)
       this.contact=res
       const token = this.contact.id;
       this.authService.setToken(token!);
+      this._contact.contact=this.contact
       //this.router.navigate(['cot-principal']);
       //this.authService.setUser(this.user);
-      this.contactsService.setContact(this.contact);
+      
+      this._contact.setContact(this.contact);
       this.router.navigate(['pages/profile']);
     })
   })
@@ -235,13 +218,5 @@ this.user=({
 
   //   return this.email.hasError('email') ? 'Not a valid email' : '';
   // }
-
-  //generador de id
-  generateID() {
-    // Math.random should be unique because of its seeding algorithm.
-    // Convert it to base 36 (numbers + letters), and grab the first 9 characters
-    // after the decimal.
-    return '_' + Math.random().toString(36).substr(2, 9);
-  };
 }
 

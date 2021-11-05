@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 
 @Component({
@@ -8,8 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { 
-
+  constructor(private title:Title) { 
+    this.title.setTitle('login')
   }
 
   ngOnInit(): void {

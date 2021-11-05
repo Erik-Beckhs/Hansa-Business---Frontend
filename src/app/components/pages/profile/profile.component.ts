@@ -83,17 +83,14 @@ export class ProfileComponent implements OnInit {
     this._contact.updateContact(idContact, contact).subscribe(res=>console.log(res))
   }
 
-  //llama al servicio de imagen y lo modifica
+  //llama al servicio de modificacion de imagen y lo modifica
   updateImage(){
-    //let img:any
     let file:object={
       img:this.imageTemp
     }
-    // console.log(file)
-    // return;
     let idContact:any = this.contact.id
-    //console.log(contact)
-    this._contact.updateImage(file, idContact).subscribe(res=>console.log(res))
+    this._contact.updateImage(file, idContact)
+    .subscribe(res=>console.log(res))
   }
 
   onFileChange(event:any) {
@@ -117,10 +114,5 @@ export class ProfileComponent implements OnInit {
       //console.log(reader.result)
       this.imageTemp = reader.result
     }
-    //console.log(this.file)
-    // if (event.target.files.length > 0) {
-    //   const file = event.target.files[0];
-    //   console.log(file)
-    // }
   }
 }

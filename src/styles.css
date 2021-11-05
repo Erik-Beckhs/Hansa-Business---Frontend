@@ -3,7 +3,7 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-.cursor{
+.pointer{
     cursor:pointer;
 }
 .border-bottom-3{
@@ -16,6 +16,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .btn-cyan{
     background-color: aqua;
     color:#fff;
+}
+
+.w100{
+    width: 100px;
 }
 
 .w200{

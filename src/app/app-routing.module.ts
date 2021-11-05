@@ -5,7 +5,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { PagesModule } from './components/pages/pages.module';
 import { ContentPrincipalModule } from './components/content-principal/content-principal.module';
 
-
 //Guards
 import { AuthGuard } from './guards/auth.guard';
 

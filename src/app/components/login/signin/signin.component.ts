@@ -21,15 +21,11 @@ export class SigninComponent implements OnInit {
 
   constructor(
     private authService:AuthService,
-    private contactService:ContactsService,
+    private _contact:ContactsService,
     private router:Router
     ) { 
 
     }
-    // public user:UserInterface = {
-    //   email : '',
-    //   password : ''
-    // }
 
   ngOnInit(): void {
     this.email=localStorage.getItem('email') || ''
@@ -37,23 +33,6 @@ export class SigninComponent implements OnInit {
       this.remember=true
     }
   }
-
-  // onLogin(){
-  //   return this.authService
-  //       .loginUser(this.user.email!, this.user.password!)
-  //       .subscribe(
-  //     data=>{
-  //       this.authService.setUser(data.user)
-  //       let token=data.id
-  //       this.authService.getContactByUserId2(data.user.id).subscribe(
-  //         res=>this.contactService.setContact(res)
-  //         )
-  //       this.authService.setToken(token)
-  //       this.ruta.navigate(['/cot-principal'])
-  //     }, 
-  //     error=>console.log(error)
-  //   )
-  // }
 
   // getErrorMessage() {
   //   if (this.email.hasError('required')) {
@@ -79,41 +58,25 @@ export class SigninComponent implements OnInit {
           let user2:any=res
           let token=user2.id
           this.authService.setToken(token)
-          this.contactService.getContactByUserId(user2.userId).subscribe(
+          this._contact.getContactByUserId(user2.userId).subscribe(
             res=>{
               //this.contactService.setContact(res)
               let contact2:any=res
-              this.contactService.getSupplierAssocContact(contact2.id).subscribe(res=>{
+              this._contact.getSupplierAssocContact(contact2.id).subscribe(res=>{
                 contact2=res
+                this._contact.contact=contact2
                 if(contact2.suppliers){
-                  //console.log('Tiene proveedor')
-                  //origin
-                  //this.router.navigate(['/cot-principal'])
-                  //1
-                  //const ruta:any = "/cot-principal"
+
                   this.router.navigateByUrl("/cot-principal")
 
-                  //2
-                  // this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
-                  //   this.router.navigateByUrl('/cot-principal').then();
-                  // }); 
-                  //3
-                  //this.router.navigateByUrl('/pages/profile', { skipLocationChange: true });
-                  //this.router.navigate(["/cot-principal"]);
-                   //4
-                  //  this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
-                  //   this.router.navigate(['/cot-principal'])
-                  // }); 
                 }
                 else{
-                  // this.router.navigateByUrl('/cot-principal', { skipLocationChange: true });
-                  // this.router.navigate(["/pages/profile"]);
-                  this.router.navigateByUrl('/cot-principal', { skipLocationChange: true });
-                  this.router.navigate(["/pages/profile"]);
 
-                  //this.router.navigate(['/pages/profile'])
+                  this.router.navigateByUrl('/cot-principal', { skipLocationChange: true });
+                  this.router.navigate(["/pages/business/notRegistered"]);
+
                 }
-                this.contactService.setContact(contact2)
+                this._contact.setContact(contact2) //guardamos en localStorage
               })
             }
           )

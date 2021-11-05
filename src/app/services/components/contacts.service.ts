@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { ContactInterface } from 'src/app/models/contact.interface';
 import { URL_SERVICE } from 'src/app/config/config';
 import { map } from 'rxjs/operators';
@@ -18,7 +18,7 @@ export class ContactsService {
     private http:HttpClient,
     private _authService:AuthService
     ) { 
-    this.contact=this.getCurrentContact()
+    this.getCurrentContact()
     //console.log(this.contact)
   }
 
@@ -28,20 +28,14 @@ export class ContactsService {
       localStorage.setItem('contact', JSON.stringify(contact))    
   }
 
-  // setLocalStorage(email:any, contact:any){
-  //   this._authService.setEmail(email)
-  //   this.setContact(contact)
-  // }
-
   //obtiene el contacto del localstorage
   getCurrentContact(){
-    let con = localStorage.getItem('contact')
+    let con:any = localStorage.getItem('contact')
     if(con!=null){
       this.contact=JSON.parse(con)
-      return this.contact
     }
     else{
-      return null!
+      this.contact=''
     }
   }
 
@@ -84,24 +78,23 @@ export class ContactsService {
           this._authService.setEmail(newContact.email)
         }
       })
-      swal('Registro Actualizado', res.first_name+' '+res.last_name, 'success')
+      swal('HANSA Business', "Se actualizó su información de manera exitosa", 'success')
+      .then(res=>{location.reload()})
     }))
   }
 
-  updateImage(file:object, id:string){ //el file debe ser objeto img:'asdsada'
+  //metodo para modificar imagen
+  updateImage(file:object, id:string){ 
     let url=`${URL_SERVICE}/api/contacts/${id}`
     return this.http.patch(url, file).pipe(map((res:any)=>{
       this.getSupplierAssocContact(res.id).subscribe(res=>{
         this.contact=res
         this.setContact(this.contact)
+      })
+      swal('HANSA Business', "Se actualizó su imagen de manera exitosa", "success").then(res=>{
         location.reload()
       })
-      swal('Imagen Actualizada', res.first_name+' '+res.last_name, 'success')
+      //location.reload()//buscar un mejor lugar
     }))
-
-    // return this.http.patch(url, file).pipe(map((res:any)=>{
-    //   swal('Imagen Actualizada', res.first_name+' '+res.last_name, 'success')
-    // }))
-
   }
 }

@@ -4,6 +4,6 @@ export interface SupplierInterface {
     type?:string,
     businessArea?:string,
     country?:string,
-    image?:string,
-    idContact?:string
+    idContact?:string,
+    img?:string
 }
