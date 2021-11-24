@@ -11,22 +11,22 @@ export class QuotationService {
 
   constructor(private http:HttpClient) { 
     //this.idQuot
-    this.idQuot=localStorage.getItem('idQuot')
+    this.idQuot = localStorage.getItem('idQuot')
   }
   headers:HttpHeaders= new HttpHeaders({
-    'Content-type': 'application/json'
+    'Content-type' : 'application/json'
   })
 
   //Obtiene el registro de cotizacion dado el id
   getQuotationById(idQuotation:any){
-    const url=`${URL_SERVICE}/api/quotations/${idQuotation}`
-    return this.http.get(url)
+    const url=`${URL_SERVICE}/api/quotations/${idQuotation}`;
+    return this.http.get(url);
   }
 
   //Devuelve las cotizaciones en las que participa el proveedor (parametro de envio id de proveedor)
   getQuotationsBySupplierId(idSupplier:any){
-    let url=`http://localhost:3000/api/answers?filter=[where][idSupplier]=${idSupplier}`
-    return this.http.get(url)
+    let url=`${URL_SERVICE}/api/answers?filter=[where][idSupplier]=${idSupplier}`
+    return this.http.get(url);
   }
 
   //Guarda el id de cotizacion en el localstorage
@@ -58,15 +58,16 @@ export class QuotationService {
     return this.http.get(url);
   }
 
+  //modifica la tabla answer
   updateAnswer(answer:any){
     let id=answer.id;
     let url = `${URL_SERVICE}/api/answers/${id}`;
     return this.http.patch(url, answer);
   }
 
-  updateTermsAndConditions(term:any){
-    let id=term.id;
-    let url = `${URL_SERVICE}/api/termConditions/${id}`;
-    return this.http.patch(id, term)
+  //obtiene los productos de una cotizacion
+  getProductsAssocQuotation(idQuot:any){
+    let url = `${URL_SERVICE}/api/quotations/${idQuot}/productServices`;
+    return this.http.get(url);
   }
 }

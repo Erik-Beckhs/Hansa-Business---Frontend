@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { BooleanPipe } from './boolean.pipe';
 import { FillEmptyPipe } from './fill-empty.pipe';
 import { ImgDocPipe } from './img-doc.pipe';
 import { MoneySupplierPipe } from './money-supplier.pipe';
@@ -17,7 +18,8 @@ import { TypeSupplierPipe } from './type-supplier.pipe';
     TypeSupplierPipe,
     RequestTypePipe,
     PositionContactPipe,
-    StateQuotationPipe
+    StateQuotationPipe,
+    BooleanPipe
 
   ],
   imports: [
@@ -31,7 +33,8 @@ import { TypeSupplierPipe } from './type-supplier.pipe';
     TypeSupplierPipe,
     RequestTypePipe,
     PositionContactPipe,
-    StateQuotationPipe
+    StateQuotationPipe,
+    BooleanPipe
 
   ]
 })

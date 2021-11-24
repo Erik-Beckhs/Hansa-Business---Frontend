@@ -24,7 +24,13 @@ export class StateQuotationPipe implements PipeTransform {
         res='Concluyó la cotización';
         break;
       case 6:
-        res='En espera';
+        res='Aceptado';
+        break;
+      case 7:
+        res='Aceptado sin Responder';
+        break;
+      case 8:
+        res='Cotización cancelada';
         break;
       default:
         res='Desconocido';

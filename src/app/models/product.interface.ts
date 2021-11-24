@@ -7,5 +7,16 @@ export interface ProductInterface {
     amount?:number,
     subtotal?:number,
     codAIO?:string,
-    codProveedor?:string
+    codProveedor?:string,
+    unitPriceOffer?:number,
+    subTotalOffer?:number,
+    idAnswerProd?:string,
+    offerName?:string,
+    about?:string,
+    link?:string,
+    advantage?:string,
+    timeService?:number,
+    nameDoc?:string,
+    doc?:string,
+    img?:string
 }

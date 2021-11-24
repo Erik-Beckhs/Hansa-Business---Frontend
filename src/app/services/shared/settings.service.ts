@@ -15,7 +15,6 @@ export class SettingsService {
 
   saveTheme(){
     localStorage.setItem('settings', JSON.stringify(this.settings))
-    //console.log('Configuraciones de tema guardado')
   }
 
   getTheme(){
@@ -25,6 +24,7 @@ export class SettingsService {
       console.log('Tema existente')
     }
     else{
+      this.settings.theme='blue'
       console.log('Tema por defecto')
     }
     this.applyTheme(this.settings.theme)

@@ -68,22 +68,15 @@
                               <mat-option *ngFor="let rubro of rubros" [value]="rubro.codigo">{{rubro.name}}</mat-option>
                             </mat-select>
                         </mat-form-field>-->
-                          
-                          <!--<mat-form-field appearance="fill" style="width:100%;">
-                            <mat-label>Tipo</mat-label>
-                            <input matInput required>
-                            <mat-error> </mat-error>
-                          </mat-form-field>-->
-                        
                 </div>
                 </div>
             </mat-card-content>
             <mat-card-footer class="d-flex">
                 <!--<mat-checkbox [checked]="isChecked" (change)="isChecked=!isChecked" class="example-margin">Estoy de acuerdo con los </mat-checkbox> <a href="#" class="ms-1">términos y condiciones</a> -->
-                <mat-checkbox formControlName="conditions" name="conditions" class="example-margin">Estoy de acuerdo con los </mat-checkbox> <a href="#" class="ms-1">términos y condiciones</a>
+                <mat-checkbox [checked]="conditions" (change)="conditions=!conditions" class="example-margin">Estoy de acuerdo con los </mat-checkbox> <a (click)="openDialog()" class="ml-1 text-primary h6"> términos y condiciones</a>
             </mat-card-footer>
             <mat-card-actions class="footer-card d-flex justify-content-end mt-3">
-                <button mat-raised-button color="primary" type="submit">Crear cuenta</button></mat-card-actions>
+                <button [disabled]="!conditions" mat-raised-button color="primary" type="submit">Crear cuenta</button></mat-card-actions>
         </form>
 
         

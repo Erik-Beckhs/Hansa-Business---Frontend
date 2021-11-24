@@ -15,7 +15,7 @@
             <div>
                 <input type="checkbox" id="md_checkbox_22" [(ngModel)]="intencion" name="intencion" class="filled-in chk-col-cyan" />
                 <label for="md_checkbox_22"><span class="txt14">Tiene intención de participar de esta cotización?</span><br>
-                <span class="txt14 text-muted">Se notificará su respuesta de cotización</span></label>
+                <span class="txt-13 text-muted">Se notificará su respuesta de cotización</span></label>
             </div>
 
                 <!--<mat-checkbox name="remember" class="example-margin" style="line-height: 0px;">
@@ -24,22 +24,25 @@
         </div>
         <span class="h6">Aceptar términos y condiciones <i class="fa fa-check-circle"></i></span>
         <hr>
-        <div class="mx-3">
+        <div *ngIf="termsConditions.length == 0" class="alert alert-warning txt-15" role="alert">
+            No existen terminos y condiciones
+        </div>
+        <div class="mx-3" *ngIf="termsConditions.length > 0">
             <div class="row d-flex align-items-center"*ngFor="let term of termsConditions;let indice=index">
                 <div class="col-4">
                     <a [href]="term.documentSanitized">
                        <div class="row">
-                        <div class="col-5">
-                            <img [src]="term.doc.name | imgDoc" width="70">
-                       </div>
-                       <div class="col-7 pl-3">
-                           <div class="row txt14">
-                               {{term.name}}
-                           </div>
-                           <div class="row txt14">
-                                {{term.doc.size}} Kb
-                           </div>
-                       </div>
+                            <div class="col-4">
+                                <img [src]="term.doc.name | imgDoc" width="70" class="img-fluid">
+                            </div>
+                            <div class="col-8 pl-3">
+                                <div class="row txt14">
+                                    {{term.name}}
+                                </div>
+                                <div class="row txt14">
+                                    {{term.doc.size}} Kb
+                                </div>
+                            </div>
                        </div>
                     </a>
                 </div>
@@ -60,7 +63,7 @@
             </div>
         </div>
         <div class="d-flex justify-content-end">
-            <button type="submit" [disabled]="!intencion" class="btn btn-cyan waves-effect waves-light m-r-10 txt14">Enviar al propietario de la cotización</button>
+            <button type="submit" [disabled]="!intencion" class="scale btn btn-cyan waves-effect waves-light m-r-10 txt14">Enviar al propietario de la cotización</button>
         </div> 
     </div>
 </form>

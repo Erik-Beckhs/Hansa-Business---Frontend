@@ -4,6 +4,11 @@ export interface DocumentInterface {
     instruction?:string,
     required?:boolean,
     template?:string,
-    docSupplier?:string,
+    templateSanitized?:any,
     idQuotation?:string,
+    idAnswer?:string,
+    nameDoc?:string,
+    document?:string,
+    idDoc?:string,
+    idAnswerDoc?:number
 }

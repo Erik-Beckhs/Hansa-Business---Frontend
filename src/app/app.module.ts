@@ -28,6 +28,8 @@ import { SharedComponent } from './components/shared/shared.component';
 //Services
 import { ServiceModule } from './services/service.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DialogsModule } from './components/dialogs/dialogs.module';
+//import { TermsConditionsHansaComponent } from './components/dialogs/terms-conditions-hansa/terms-conditions-hansa.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     RespuestasComponent,
     Page404Component,
     SharedComponent
+    //TermsConditionsHansaComponent
     //SupplierPipe
   ],
   entryComponents:[],
@@ -55,6 +58,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     SharedModule,
     ContentPrincipalModule,
     ServiceModule,
+    DialogsModule,
     ReactiveFormsModule
   ],
   providers: [],

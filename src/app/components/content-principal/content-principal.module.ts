@@ -8,6 +8,9 @@ import { PrincipalRoutes } from "./content-principal.routes";
 import { CotizacionesComponent } from "./cotizaciones/cotizaciones.component";
 import { InformacionComponent } from "./informacion/informacion.component";
 import { QuotationComponent } from './quotation/quotation.component';
+import { AuctionComponent } from './auction/auction.component';
+import { LobbyComponent } from './lobby/lobby.component';
+import { ContentSideComponent } from './content-side/content-side.component';
 
 @NgModule({
     declarations:[
@@ -15,7 +18,10 @@ import { QuotationComponent } from './quotation/quotation.component';
         CotizacionesComponent,
         ContentInfoComponent,
         InformacionComponent,
-        QuotationComponent
+        QuotationComponent,
+        AuctionComponent,
+        LobbyComponent,
+        ContentSideComponent
     ],
     imports:[
         SharedModule,

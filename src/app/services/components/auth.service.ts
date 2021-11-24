@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
-import { map } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 //import { isNullOrUndefined } from 'util';
 
 import { ContactInterface } from 'src/app/models/contact.interface';
 import { SupplierInterface } from 'src/app/models/supplier.interface';
 import { UserInterface } from 'src/app/models/user.interface';
 import { URL_SERVICE } from 'src/app/config/config';
+import { throwError } from 'rxjs';
+
+import swal from 'sweetalert';
 
 @Injectable({
   providedIn: 'root'
@@ -36,7 +39,7 @@ export class AuthService {
     position:string,
     idUser:number
     ){
-    const url = "http://localhost:3000/api/contacts";
+    const url = `${URL_SERVICE}/api/contacts`;
     //const url= "http://localhost:3000/contacts";
     return this.http.post<ContactInterface>(url, {
       id:id,
@@ -54,13 +57,14 @@ export class AuthService {
   }
 
   //Registro de usuarios
-  registerUser(
-    //email:string,
-    //password:string
-    user:UserInterface
-  ){
-    const url=URL_SERVICE+"/api/Users"
+  registerUser(user:UserInterface){
+    let url=`${URL_SERVICE}/api/Users`;
     return this.http.post(url, user)
+    .pipe(catchError((err:HttpErrorResponse)=>{
+      //console.log(err);
+      swal("HANSA Business", "El correo ya existe", "error");
+      return throwError(err);
+    }));
   }
 
   registerSupplier(
@@ -70,7 +74,7 @@ export class AuthService {
     country:string,
     idContact:string
   ){
-    const url = "http://localhost:3000/api/suppliers";
+    const url = `${URL_SERVICE}/api/suppliers`;
     return this.http.post<SupplierInterface>(url, {
       id:id,
       name:name,
@@ -106,26 +110,6 @@ export class AuthService {
     }
   }
 
-  // getContactByUserId(userId:any){
-  //     const url = `http://localhost:3000/api/contacts/findOne?filter[where][idUser]=${userId}`;
-  //     return this.contact=this.http.get(url);
-  // }
-
- /* getBookById(id: string) {
-    const url_api = `http://localhost:3000/api/books/${id}`;
-    return (this.book = this.http.get(url_api));
-  }*/
-  
-  // loginUser(email: string, password: string): Observable<any> {
-  //   const url_api = "http://localhost:3000/api/Users/login?include=user";
-  //   return this.http
-  //     .post<UserInterface>(
-  //       url_api,
-  //       { email, password },
-  //       { headers: this.headers }
-  //     )
-  //     .pipe(map(data => data));
-  // }
   setEmail(email:any){
     localStorage.setItem('email', email)
   }
@@ -141,6 +125,12 @@ export class AuthService {
 
     const url = URL_SERVICE + '/api/Users/login?include=user'
     return this.http.post(url, user)
+    .pipe(catchError((err:HttpErrorResponse)=>{
+      //swal("HANSA Business", err.error.error.message, "error")
+      swal("HANSA Business", "Credenciales incorrectas, intente de nuevo", "error")
+      //console.log(err)
+      return throwError(err)
+    }))
   }
 
   //metodo que elimina la data del localStorage

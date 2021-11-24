@@ -66,9 +66,7 @@ export class SigninComponent implements OnInit {
                 contact2=res
                 this._contact.contact=contact2
                 if(contact2.suppliers){
-
                   this.router.navigateByUrl("/cot-principal")
-
                 }
                 else{
 

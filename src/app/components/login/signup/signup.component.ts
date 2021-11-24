@@ -6,6 +6,8 @@ import { ContactInterface, SupplierInterface, UserInterface } from '../../../mod
 import { Router } from '@angular/router';
 import { ContactsService, ListService } from 'src/app/services/service.index';
 import { FormGroup, FormControl, Validators, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { TermsConditionsHansaComponent } from '../../dialogs/terms-conditions-hansa/terms-conditions-hansa.component';
 
 //librerias
 import swal from 'sweetalert';
@@ -21,27 +23,24 @@ export class SignupComponent implements OnInit {
 
   hide:boolean=true;
   //hide2:boolean=true
-  //isChecked:boolean=true;
+  conditions:boolean=true;
   //email = new FormControl('', [Validators.required, Validators.email]);
   positionsList:any[]=[];
 
-  public user:UserInterface={
-    email:"",
-    password:""
-  }
+  user!:UserInterface
 
   paisList:any[]=[]
   rubroList:any[]=[]
 
   constructor(
     private _list:ListService,
-    //public dialog:MatDialog,
+    public dialog:MatDialog,
     private authService:AuthService,
     private router:Router,
     private _contact:ContactsService,
     private _generateID:GenerateIDService
     ) {
-      this.paisList=_list.getPaisList().sort() 
+      this.paisList=this._list.getPaisList().sort() 
       //this.positionsList=contactsService.getPositions()
       //this.rubroList=_list.getRubroList()
       // this._pais.getPaisList().subscribe(data=>{this.paisList=data, console.log(this.paisList)});
@@ -66,8 +65,8 @@ export class SignupComponent implements OnInit {
       phone:new FormControl(null, Validators.required),
       email:new FormControl(null, [Validators.required, Validators.email]),
       password:new FormControl(null, Validators.required),
-      password2:new FormControl(null, Validators.required),
-      conditions:new FormControl(false)
+      password2:new FormControl(null, Validators.required)
+      //conditions:new FormControl(false)
     }, 
       //this.passwordsShouldMatch
       {validators:this.sonIguales}
@@ -81,8 +80,8 @@ export class SignupComponent implements OnInit {
       phone:'61216696',
       email:'test1@hansa.com.bo',
       password:'123456',
-      password2:'123456',
-      conditions:true
+      password2:'123456'
+      //conditions:true
       })
     }
   
@@ -166,13 +165,6 @@ registerContact(){
     swal('Importante', 'Las contraseñas deben ser iguales', 'warning')
     return;
   }
-  if(!this.formContact.value.conditions){
-    //console.log('Las condiciones deben ser aceptadas')
-    swal('Importante', 'Debe aceptar los términos y condiciones', 'warning')
-    return;
-  }
-  //console.log('formContact valida', this.formContact.valid)
-  //console.log(this.formContact!.value)
 
  this.contact = {
    id:this._generateID.generateID(),
@@ -190,25 +182,36 @@ registerContact(){
   })
 
   //registrar usuario, registrar contacto
-  this.authService.registerUser(this.user).subscribe(res=>{
-    this.user=res
-    this.contact.idUser=this.user.id
-    this._contact.registerContact(this.contact).subscribe(res=>{
+  this.authService.registerUser(this.user)
+  .subscribe(res=>{
+      this.user=res;
+      this.contact.idUser=this.user.id;
+      this._contact.registerContact(this.contact).subscribe(res=>{
       //console.log(res)
       this.contact=res
       const token = this.contact.id;
       this.authService.setToken(token!);
       this._contact.contact=this.contact
-      //this.router.navigate(['cot-principal']);
-      //this.authService.setUser(this.user);
-      
       this._contact.setContact(this.contact);
-      this.router.navigate(['pages/profile']);
+      swal("HANSA Business", "Se creo su usuario de manera exitosa.. Bienvenido a nuestro Portal de Proveedor", "success")
+      .then(()=>{
+        this.router.navigate(['pages/profile']);
+      })
     })
   })
   //this.contactsService.saveContact(this.contact).subscribe(res=>console.log(res))
 }
 
+  openDialog() {
+    this.dialog.open(TermsConditionsHansaComponent, {
+      width:'50%'
+    });
+    // const dialogRef = this.dialog.open(DialogContentExampleDialog);
+
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log(`Dialog result: ${result}`);
+    // });
+  }
 
 
   // getErrorMessage() {

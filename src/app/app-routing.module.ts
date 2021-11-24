@@ -23,7 +23,6 @@ children:[
   {path:'register', component:SignupComponent},
 ]
 },
-
 {path:'retrieve', component:RetrieveComponent},
 {path:'**', component:Page404Component}
 ];

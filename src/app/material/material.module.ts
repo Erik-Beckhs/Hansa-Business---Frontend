@@ -18,6 +18,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { CommonModule } from '@angular/common';
+import { MatStepperModule } from '@angular/material/stepper';
 
 const MaterialComponents = [
     MatButtonModule,
@@ -38,7 +39,8 @@ const MaterialComponents = [
     MatSidenavModule,
     MatDividerModule,
     MatPaginatorModule,
-    CommonModule
+    CommonModule,
+    MatStepperModule
 ];
 
 @NgModule({
