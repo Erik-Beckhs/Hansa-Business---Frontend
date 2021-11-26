@@ -1,13 +1,15 @@
 <div class="quotation">
    <!-- <form ngNativeValidate #f="ngForm" class="mx-2 mt-3">-->
   <div>
-      <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+      <!--<button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
                 {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
-              </button>
-              <mat-stepper [linear]="isLinear" #stepper>
-                <mat-step [stepControl]="firstFormGroup">
+              </button>-->
+              <!--<mat-stepper [linear]="isLinear" #stepper>-->
+              <mat-stepper linear>
+                <!--<mat-step [stepControl]="firstFormGroup">-->
+                  <mat-step [completed]="isCompleted">
                   <!--<form [formGroup]="firstFormGroup">-->
-                  <form #f="ngForm" class="form-horizontal" (ngSubmit)="formResponse(f)">
+                  <form class="form-horizontal" (ngSubmit)="formResponse()">
             
                     <ng-template matStepLabel>Formulario de Preguntas</ng-template>
 
@@ -27,8 +29,9 @@
                                   <div class="querys mx-5">
 
                                     <div class="form-group row" *ngFor="let query of section.querys, let indice = index">
-                                    
-                                        <label for="" class="txt-14 col-sm-5 text-right control-label col-form-label">{{query.name}}</label>
+                                        
+                                      <label for="" class="txt-14 col-sm-5 text-right control-label col-form-label">{{query.name}}
+                                      <span class="text-danger" *ngIf="query.required">*</span> </label>
                                         <div class="col-sm-7" *ngIf="query.type == 3" >
                                           <input type="text" name="query_{{indice}}" [(ngModel)]="query.answer" class="form-control txt-14">
                                         </div>
@@ -53,6 +56,7 @@
                                         <div class="col-sm-7" *ngIf="query.type == 7">
                                           <input type="date" class="form-control" name="query_{{indice}}" [(ngModel)]="query.answer" id="mdate">
                                         </div>
+
                                     </div>
                                     
                                   <!--</form>-->
@@ -69,12 +73,13 @@
                           </div>
                     </div>
                     <div class="text-right">
-                      <button type="button" mat-button matStepperNext class="scale">Siguiente</button>
+                      <button type="button" mat-button matStepperNext (click)="checkRequiredQuerys()" class="scale">Siguiente</button>
                     </div>
                   </form>
                 </mat-step>
 
-                <mat-step [stepControl]="secondFormGroup" label="Productos / Servicios">
+                <!--<mat-step [stepControl]="secondFormGroup" label="Productos / Servicios">-->
+                  <mat-step [completed]="isCompleted2" label="Productos / Servicios">
                   
                   <div class="my-2 productos">
                     <div class="row">
@@ -155,7 +160,7 @@
                  </div>
                 </mat-step>
 
-                <mat-step>
+                <mat-step [completed]="isCompleted3">
                   <ng-template matStepLabel> Documentos Solicitados</ng-template>
 
                   <div class="mx-3 my-2 documentos">
@@ -194,8 +199,8 @@
                                     <p class="text-muted txt-13">{{document.instruction}}</p>
                                     <p class="txt-13"><span class="font-weight-bold">Obligatorio: </span><span class="text-muted">{{document.required | boolean}}</span> </p>
                                     <div class="px-4">
-                                      <label *ngIf="document.template" class="label label-success scale"><a [href]="document.templateSanitized" class="text-white">Descargar Plantilla</a></label>
-                                      <label *ngIf="!document.template" class="label label-danger">Sin Plantilla</label>
+                                      <label *ngIf="document.templateSanitized" class="label label-success scale"><a [href]="document.templateSanitized" class="text-white">Descargar Plantilla</a></label>
+                                      <label *ngIf="!document.templateSanitized" class="label label-danger">Sin Plantilla</label>
                                     </div>
                                   </td>
                                   <td>

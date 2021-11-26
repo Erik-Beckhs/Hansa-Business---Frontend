@@ -10,6 +10,7 @@ import { QuotationInterface, ProductInterface, DocumentInterface } from 'src/app
 import { ContactsService, DocumentsService, ProductsService, QuotationService, SurveyService } from 'src/app/services/service.index';
 import { ProductComponent } from '../../dialogs/product/product.component';
 
+
 //import swal from 'sweetalert';
 declare var swal:any
 
@@ -19,6 +20,10 @@ declare var swal:any
   styleUrls: ['./quotation.component.css']
 })
 export class QuotationComponent implements OnInit {
+  isCompleted:boolean = false
+  isCompleted2:boolean = true
+  isCompleted3:boolean = true
+
   prueba:any='valor'
   //stepper
   isLinear = false;
@@ -85,12 +90,12 @@ export class QuotationComponent implements OnInit {
   // }
 
   ngOnInit(): void {
-    this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required],
-    });
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required],
-    });
+    // this.firstFormGroup = this._formBuilder.group({
+    //   firstCtrl: ['', Validators.required],
+    // });
+    // this.secondFormGroup = this._formBuilder.group({
+    //   secondCtrl: ['', Validators.required],
+    // });
 
     this.getSurveyGral(this.idQuot);
 
@@ -235,11 +240,11 @@ export class QuotationComponent implements OnInit {
     this._document.getDocumentsAssocQuotation(this.idQuot).subscribe((documents:any)=>{
       this.documents=documents;
     
-      
-      for(let i=0;i<documents.length;i++){
+      for(let i=0;i<this.documents.length;i++){
         let idDoc = this.documents[i].id
         this._document.countAnswerDocsByIdAnswerAndIdDoc(this.idAnswer, idDoc)
         .subscribe((res:any)=>{
+
           if(res.count === 0){
             // this.documentsLoad[i] = {
             //   idAnswer : this.idAnswer,
@@ -252,16 +257,23 @@ export class QuotationComponent implements OnInit {
             //this.documents[i].idDoc = idDoc
             this.documents[i].nameDoc = ''
             this.documents[i].document = ''
+            if(this.documents[i].template){
+              this.documents[i].templateSanitized = this.domSanitizer.bypassSecurityTrustUrl(this.documents[i].template!)
+            }
           }
           else{
             this._document.getAnswerDocumentByIdAnswerAndIdDocument(this.idAnswer, this.documents[i].id)
             .subscribe((resp:any)=>{
+              //console.log('Respuesta de documento si existe')
+              //console.log(resp)
               this.documents[i].idAnswer = resp.idAnswer
               //this.documents[i].idDoc = idDoc
               this.documents[i].nameDoc = resp.nameDoc
               this.documents[i].document = resp.document
               this.documents[i].idAnswerDoc = resp.id
-              this.documents[i].templateSanitized = this.domSanitizer.bypassSecurityTrustUrl(this.documents[i].template!)
+              if(this.documents[i].template){
+                this.documents[i].templateSanitized = this.domSanitizer.bypassSecurityTrustUrl(this.documents[i].template!)
+              }
             })
           }
         })
@@ -405,13 +417,22 @@ export class QuotationComponent implements OnInit {
     }))
   }
 
-  formResponse(form:NgForm){
-    //console.log(form.valid)
-    //console.log(form.value)
+  formResponse(){
+    // console.log(form.valid)
+    // console.log(form.value)
     // console.log(this.surveyGral.sections[0].querys)
     // return;
 
     for(let section of this.surveyGral.sections){
+
+      // if(this.verificaForm(this.surveyGral.sections)){
+      //   console.log('devuelve true')
+      //   return false;
+      // }
+      // else {
+      //   return true;
+      // }
+      //comprobamos que no haya requeridos vacios
       for(let query of section.querys){
         if(query.type != 5){
           if(query.idAnswerSurvey){
@@ -475,6 +496,12 @@ export class QuotationComponent implements OnInit {
         }
       }
     }
+  }
+
+  checkRequiredQuerys(){
+    //return 2;
+    //return ;
+    this.isCompleted = true;
   }
 
   changeCheck(option:any, value:any){
