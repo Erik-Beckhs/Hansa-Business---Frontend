@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatStepper } from '@angular/material/stepper';
 import { MatTableDataSource } from '@angular/material/table';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -26,7 +27,7 @@ export class QuotationComponent implements OnInit {
 
   prueba:any='valor'
   //stepper
-  isLinear = false;
+  isLinear = true;
   firstFormGroup!: FormGroup;
   secondFormGroup!: FormGroup;
 
@@ -167,8 +168,6 @@ export class QuotationComponent implements OnInit {
                 )
                 //TODO: si es de tipo desplegable, entrar a answer survey y con idquery e idanswer
                 //devolver un array de respuestas, answerSurvey.answer1 === options.name 
-
-
 
               querys.push(resp);
               //console.log('LISTA DE PREGUNTAS')
@@ -498,10 +497,12 @@ export class QuotationComponent implements OnInit {
     }
   }
 
-  checkRequiredQuerys(){
+  checkRequiredQuerys(stepper:MatStepper){
     //return 2;
     //return ;
-    this.isCompleted = true;
+    //this.isCompleted = true;
+    console.log('vamos al siguiente')
+    //stepper.next();
   }
 
   changeCheck(option:any, value:any){
@@ -514,6 +515,8 @@ export class QuotationComponent implements OnInit {
     // }
     // console.log(this.surveyGral)
   }
+
+
 }
 
 // export class surveyInterface {
